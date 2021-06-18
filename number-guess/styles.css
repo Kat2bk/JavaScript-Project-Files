@@ -130,3 +130,21 @@ input {
 .label {
   color: #ef3b44;
 }
+
+/* SONIC THE HEDGEHOG */
+
+@keyframes jump {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, -140px, 0);
+  }
+}
+
+.jumping {
+  animation: jump 0.5s;
+  animation-direction: alternate;
+  animation-iteration-count: 1;
+  /* animation-play-state: paused; */
+}

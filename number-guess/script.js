@@ -6,6 +6,12 @@ function nope() {
     audio.play();
 }
 
+// sound effect for jump mechanic
+function jumping() {
+    let audio = new Audio("jump.mp3");
+    audio.play();
+}
+
 // need to compare user guess to a randomly generated number
 const randomNumber = Math.trunc(Math.random()*20) + 1;
 
@@ -31,3 +37,26 @@ checkBtn.addEventListener('click', () => {
        message.textContent = "Enter a valid number"
    }
 })
+
+
+    const sonic = document.querySelector('.sonic-foot');
+
+    // for every valid input sonic will jump
+    checkBtn.addEventListener('click', sonicJump)
+
+
+        function sonicJump() {
+            const value = Number(document.querySelector('.check').value);
+
+            // if (!sonic.classList.contains("jumping")) {
+                if (value <= 20 && value) {
+                    jumping();
+                    sonic.classList.add("jumping");
+                    sonic.src = "sonic-jumping.gif"
+                setTimeout(() => {
+                    sonic.classList.remove("jumping")
+                    sonic.src = "sonic-impatient.gif"
+                }, 500)
+                }
+            }
+        // }
