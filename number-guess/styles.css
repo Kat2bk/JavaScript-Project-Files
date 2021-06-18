@@ -21,14 +21,112 @@ body {
 
 header {
   position: relative;
-  height: 35vh;
-  border-bottom: 7px solid #ef3b44;
+  height: 30vh;
+  border-bottom: 8px solid #ef3b44;
 }
 
 main {
-  height: 65vh;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.left {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  width: 50rem;
+}
+
+.right {
+  font-size: 2.5rem;
+  width: 50rem;
+}
+
+/* elements */
+
+h1 {
+  font-size: 4rem;
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  top: 52%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: -5rem;
+}
+
+.number {
+  color: #ef3b44;
+  background-color: #f7bb15;
+  border: 1rem solid #b7b7b7;
+  font-size: 6rem;
+  width: 14rem;
+  padding: 3rem 0;
+  position: absolute;
+  text-align: center;
+  left: 46%;
+  bottom: -5rem;
+  /* transform: translate(-50%, -50%); */
+}
+
+.between {
+  font-size: 2rem;
+  position: absolute;
+  left: 10%;
+  bottom: 1rem;
+}
+
+.again {
+  position: absolute;
+  bottom: 1rem;
+  right: 10%;
+}
+
+.sonic-foot {
+  width: 7%;
+  max-width: 100%;
+}
+
+input {
+  font-size: 5rem;
+}
+
+.check {
+  background: #97a8d3;
+  border: 5px solid #0b68b0;
+  font-family: inherit;
+  width: 20rem;
+  /* display: block; */
+  padding: 3rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.btn {
+  border: none;
+  background-color: #ef3b44;
+  color: #eee;
+  font-family: inherit;
+  padding: 2rem 3rem;
+  cursor: pointer;
+  font-size: 2rem;
+}
+
+.guess {
+  margin-bottom: 5rem;
+  height: 3rem;
+}
+
+.label-score {
+  margin-bottom: 2rem;
+}
+
+.num {
+  color: #0b68b0;
+}
+
+.label {
+  color: #ef3b44;
 }
