@@ -6,7 +6,11 @@ function nope() {
     audio.play();
 }
 
-// need to compare this number to a randomly generated number
+// need to compare user guess to a randomly generated number
+const randomNumber = Math.trunc(Math.random()*20) + 1;
+
+// grabbing box to put generated number, which we will hide
+document.querySelector('.number').textContent = randomNumber;
 
 // this is the check button
 const checkBtn = document.querySelector('.check-btn');
@@ -22,6 +26,7 @@ checkBtn.addEventListener('click', () => {
     nope();
     message.textContent = "No number!"
    } else if (number > 20) {
+       // or if value is above stated range
        nope();
        message.textContent = "Enter a valid number"
    }
