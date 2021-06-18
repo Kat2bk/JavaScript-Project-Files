@@ -138,7 +138,7 @@ input {
     transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translate3d(0, -140px, 0);
+    transform: translate3d(0, -190px, 0);
   }
 }
 
@@ -147,4 +147,22 @@ input {
   animation-direction: alternate;
   animation-iteration-count: 1;
   /* animation-play-state: paused; */
+}
+
+@keyframes bounce {
+  0% {
+    bottom: 0;
+    z-index: 100;
+  }
+  50% {
+    bottom: -20px;
+  }
+  100% {
+    bottom: 0;
+  }
+}
+
+.bounce {
+  animation: bounce 1s cubic-bezier(0.87, -0.45, 0.81, 1.44);
+  animation-delay: 0.3s;
 }

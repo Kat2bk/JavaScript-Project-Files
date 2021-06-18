@@ -47,14 +47,17 @@ checkBtn.addEventListener('click', () => {
 
         function sonicJump() {
             const value = Number(document.querySelector('.check').value);
+            const block = document.querySelector('.number');
 
             // if (!sonic.classList.contains("jumping")) {
                 if (value <= 20 && value) {
                     jumping();
                     sonic.classList.add("jumping");
                     sonic.src = "sonic-jumping.gif"
+                    block.classList.add("bounce");
                 setTimeout(() => {
-                    sonic.classList.remove("jumping")
+                    sonic.classList.remove("jumping");
+                    block.classList.remove("bounce");
                     sonic.src = "sonic-impatient.gif"
                 }, 500)
                 }
