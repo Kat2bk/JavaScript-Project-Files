@@ -54,6 +54,8 @@ checkBtn.addEventListener('click', (e) => {
        // if input is correct 
        youWin();
        message.textContent = 'Correct!'
+        document.querySelector('body').classList.add('rainbow')
+
    } else if (number > secretNumber) {
        // if guess is higher than secret number and lower score
        if (score > 1) {
