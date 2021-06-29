@@ -44,8 +44,17 @@ checkBtn.addEventListener('click', () => {
        nope();
        message.textContent = "Enter a valid number"
    } else if (number === secretNumber) {
+       // if input is correct 
        youWin();
        message.textContent = 'Correct!'
+   } else if (number > secretNumber) {
+       // if guess is higher than secret number
+       nope();
+       message.textContent = "Too high!"
+       // if guess is lower
+   } else if (number < secretNumber) {
+       nope();
+       message.textContent = "Too low!"
    }
 })
 
