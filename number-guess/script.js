@@ -12,16 +12,24 @@ function jumping() {
     audio.play();
 }
 
+// sound effect for winning
+function youWin() {
+    let audio = new Audio("continue.mp3");
+    audio.play();
+}
+
 // need to compare user guess to a randomly generated number
-const randomNumber = Math.trunc(Math.random()*20) + 1;
+const secretNumber = Math.trunc(Math.random()*20) + 1;
 
 // grabbing box to put generated number, which we will hide
-document.querySelector('.number').textContent = randomNumber;
+document.querySelector('.number').textContent = secretNumber;
 
 // this is the check button
 const checkBtn = document.querySelector('.check-btn');
 // this is the message that displays for user input
 const message = document.querySelector('.guess');
+//this is sonic the hedgehog
+const sonic = document.querySelector('.sonic-foot');
 
 // adding a click event to grab the input value
 checkBtn.addEventListener('click', () => {
@@ -35,22 +43,26 @@ checkBtn.addEventListener('click', () => {
        // or if value is above stated range
        nope();
        message.textContent = "Enter a valid number"
+   } else if (number === secretNumber) {
+       youWin();
+       message.textContent = 'Correct!'
    }
 })
 
 
-    const sonic = document.querySelector('.sonic-foot');
 
     // for every valid input sonic will jump
     checkBtn.addEventListener('click', sonicJump)
 
-
+    // sonic function
         function sonicJump() {
             const value = Number(document.querySelector('.check').value);
             const block = document.querySelector('.number');
 
             // if (!sonic.classList.contains("jumping")) {
-                if (value <= 20 && value) {
+                if (value === secretNumber) {
+                    sonic.src = "ring.gif"
+                } else if (value <= 20 && value) {
                     jumping();
                     sonic.classList.add("jumping");
                     sonic.src = "sonic-jumping.gif"
