@@ -30,11 +30,18 @@ const checkBtn = document.querySelector('.check-btn');
 const message = document.querySelector('.guess');
 //this is sonic the hedgehog
 const sonic = document.querySelector('.sonic-foot');
+// grabbing score from p element
+const displayScore = document.querySelector('.score');
+// grabbing highscore from second p element
+const highscore = document.querySelector('.highscore');
+// creating new score variable to mimic one on DOM
+let score = 20;
 
 // adding a click event to grab the input value
-checkBtn.addEventListener('click', () => {
+checkBtn.addEventListener('click', (e) => {
     // input will always be a string, need to convert to a number
    const number = Number(document.querySelector('.check').value);
+
    if (!number) {
     // need to check if there is a value inside the input
     nope();
@@ -48,13 +55,17 @@ checkBtn.addEventListener('click', () => {
        youWin();
        message.textContent = 'Correct!'
    } else if (number > secretNumber) {
-       // if guess is higher than secret number
+       // if guess is higher than secret number and lower score
        nope();
        message.textContent = "Too high!"
-       // if guess is lower
+        score--;
+       displayScore.textContent = score;
+       // if guess is lower and lower score
    } else if (number < secretNumber) {
        nope();
        message.textContent = "Too low!"
+       score--;
+       displayScore.textContent = score;
    }
 })
 
