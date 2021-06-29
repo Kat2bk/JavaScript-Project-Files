@@ -56,25 +56,25 @@ checkBtn.addEventListener('click', (e) => {
        message.textContent = 'Correct!'
    } else if (number > secretNumber) {
        // if guess is higher than secret number and lower score
-       if (score > 0) {
+       if (score > 1) {
         nope();
         message.textContent = "Too high!"
          score--;
         displayScore.textContent = score;
        } else {
-           score = 0;
+           displayScore.textContent = 0;
            message.textContent = "You lost the game..."
        }
     
        
    } else if (number < secretNumber) {
-       if (score > 0) {
+       if (score > 1) {
         nope();
         message.textContent = "Too low!"
         score--;
         displayScore.textContent = score;
        } else {
-           score = 0;
+           displayScore.textContent = 0;
            message.textContent = "You lost the game..."
        }
    }
