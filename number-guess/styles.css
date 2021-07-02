@@ -113,6 +113,11 @@ input {
   padding: 2rem 3rem;
   cursor: pointer;
   font-size: 2rem;
+  box-shadow: 5px 5px 0.25ex #999;
+}
+
+.btn:hover {
+  background-color: cornflowerblue;
 }
 
 .guess {
