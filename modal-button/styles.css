@@ -1,0 +1,72 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  color: rgb(221, 185, 185);
+  line-height: 1.5;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: rgb(65, 43, 43);
+}
+
+.show-modal {
+  font-size: 1.5rem;
+  /* font-weight: 600; */
+  padding: 2rem 3.75rem;
+  margin: 5rem 2rem;
+  border: none;
+  color: rgb(107, 92, 92);
+  cursor: pointer;
+  border-radius: 5rem;
+  position: absolute;
+}
+
+.show-modal:hover {
+  background-color: #444;
+  color: rgb(221, 185, 185);
+  border: 1px solid rgb(221, 185, 185);
+}
+
+p {
+  font-size: 1.5rem;
+}
+
+/* making modal work */
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 65%;
+  padding: 5rem;
+  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.hidden {
+  display: none;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+  z-index: 5;
+}
