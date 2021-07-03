@@ -30,9 +30,11 @@ const sonic = document.querySelector('.sonic-foot');
 // grabbing score from p element
 const displayScore = document.querySelector('.score');
 // grabbing highscore from second p element
-const highscore = document.querySelector('.highscore');
+const displayHighscore = document.querySelector('.highscore');
 // creating new score variable to mimic one on DOM
 let score = 20;
+// creating highscore variable
+let highscore = 0;
 
 // adding a click event to grab the input value
 checkBtn.addEventListener('click', (e) => {
@@ -53,7 +55,13 @@ checkBtn.addEventListener('click', (e) => {
        message.textContent = 'Correct!'
         document.querySelector('body').classList.add('rainbow')
         // grabbing box to put generated number
-    document.querySelector('.number').textContent = secretNumber;
+        document.querySelector('.number').textContent = secretNumber;
+        // keeping highscore
+        if (score > highscore) {
+        // highscore = displayScore.textContent = score;
+        highscore = score;
+        displayHighscore.textContent = highscore;
+        }
 
    } else if (number > secretNumber) {
        // if guess is higher than secret number and lower score
