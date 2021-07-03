@@ -19,10 +19,7 @@ function youWin() {
 }
 
 // need to compare user guess to a randomly generated number
-const secretNumber = Math.trunc(Math.random()*20) + 1;
-
-// grabbing box to put generated number, which we will hide
-document.querySelector('.number').textContent = secretNumber;
+let secretNumber = Math.trunc(Math.random()*20) + 1;
 
 // this is the check button
 const checkBtn = document.querySelector('.check-btn');
@@ -54,6 +51,10 @@ checkBtn.addEventListener('click', (e) => {
        // if input is correct 
        youWin();
        message.textContent = 'Correct!'
+        document.querySelector('body').classList.add('rainbow')
+        // grabbing box to put generated number
+    document.querySelector('.number').textContent = secretNumber;
+
    } else if (number > secretNumber) {
        // if guess is higher than secret number and lower score
        if (score > 1) {
@@ -79,9 +80,6 @@ checkBtn.addEventListener('click', (e) => {
        }
    }
 })
-
-
-
     // for every valid input sonic will jump
     checkBtn.addEventListener('click', sonicJump)
 
@@ -105,4 +103,31 @@ checkBtn.addEventListener('click', (e) => {
                 }, 500)
                 }
             }
-        // }
+
+
+
+        // click event for again button
+const againBtn = document.querySelector('.again');
+againBtn.addEventListener('click', () => {
+    // if (message.textContent === "Correct!") {
+        // displayScore.textContent = 20;
+        // resetting score
+        score = 20;
+        displayScore.textContent = score;
+        // getting new randomized number
+        secretNumber = Math.trunc(Math.random()*20) + 1;
+        // resetting block to question mark
+        document.querySelector('.number').textContent = "?"
+        // resetting message
+        message.textContent = "Start guessing..."
+        // resetting sonic
+        sonic.src = "sonic-impatient.gif"
+        // erasing user input
+        document.querySelector('.check').value = ""
+        // setting to default background-color
+        // document.querySelector('body').style.backgroundColor = "#f3e416"
+        document.querySelector('body').classList.remove('rainbow')
+       
+        
+})
+
