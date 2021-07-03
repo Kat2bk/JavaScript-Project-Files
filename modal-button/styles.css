@@ -43,6 +43,17 @@ p {
   font-size: 1.5rem;
 }
 
+.close-modal {
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  font-size: 4.5rem;
+  color: rgb(240, 240, 240);
+  cursor: pointer;
+  border: none;
+  background-color: rgb(65, 43, 43);
+}
+
 /* making modal work */
 
 .modal {
