@@ -14,5 +14,25 @@ const overlay = document.querySelector('.overlay');
 showButton.addEventListener('click', () => {
     modal.classList.remove('hidden');
     overlay.classList.remove('hidden');
+    // modal.style.display = 'block' also works but it is
+    // more complicated
+})
+
+const closeModel = () => {
+    modal.classList.add('hidden');
+    overlay.classList.add('hidden');
+}
+
+exitButton.addEventListener('click', closeModel)
+overlay.addEventListener('click', closeModel)
+
+// esc key
+document.addEventListener('keydown', (event) => {
+    // console.log(event.key)
+    if (event.key === "Escape") {
+        if (!modal.classList.contains('hidden')) {
+            closeModel()
+        }
+    }
 })
 
