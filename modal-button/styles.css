@@ -40,18 +40,20 @@ body {
 }
 
 p {
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 
 .close-modal {
   position: absolute;
   top: 1rem;
   right: 2rem;
-  font-size: 4.5rem;
-  color: rgb(240, 240, 240);
+  font-size: 4rem;
+  padding: 0.2rem 0.5rem;
+  color: rgb(250, 77, 77);
   cursor: pointer;
   border: none;
-  background-color: rgb(65, 43, 43);
+  border-radius: 50px;
+  background: none;
 }
 
 /* making modal work */
@@ -60,11 +62,14 @@ p {
   position: absolute;
   top: 50%;
   left: 50%;
+  background-color: rgb(81, 70, 87);
   transform: translate(-50%, -50%);
-  width: 60%;
-  padding: 5rem;
-  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.2);
+  width: 50%;
+  color: rgb(240, 232, 232);
+  padding: 6rem;
+  box-shadow: 0 4rem 10rem rgba(0, 0, 0, 0.5);
   z-index: 10;
+  border-radius: 10px;
 }
 
 .hidden {
