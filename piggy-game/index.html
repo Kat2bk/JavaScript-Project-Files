@@ -5,10 +5,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Piggy</title>
+    <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+    <section class="player-one player player-active">
+        <h2 class="name" id="name0">Player 1</h2>
+        <p class="score" id="score0">0</p>
+        <div class="current">
+            <p class="current-label">Current</p>
+            <p class="current-score" id="current0">0</p>
+        </div>
+    </section>
+    <!-- player menu divide -->
+    <section class="player-two player player-active">
+        <h2 class="name" id="name1">Player 2</h2>
+        <p class="score" id="score1">0</p>
+        <div class="current">
+            <p class="current-label">Current</p>
+            <p class="current-score" id="current1">0</p>
+        </div>
 
-    
-    
+        <input type="number class="input-score" placeholder="Set Winning Score" />
+
+        <img src="./dice/dice-1.png" alt="game-dice" class="dice" />
+        <button class="btn btn-new">New game</button>
+        <button class="btn btn-roll">🎲 Roll dice</button>
+        <button class="btn btn-hold">Hold</button>
+    </section>
+
+
+    <script src="script.js"></script>
 </body>
 </html>
