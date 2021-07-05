@@ -1,0 +1,22 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  height: 100vh;
+  color: #333;
+  background-image: url("./water-waves.jpg");
+  /* background-repeat: repeat; */
+  display: flex;
+  background-size: cover;
+  align-items: center;
+  justify-content: center;
+}
