@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+    <div class="water"></div>
     <div class="wrapper">
     <section class="player-one player player-active">
         <h2 class="name" id="name0">Player 1</h2>
@@ -33,6 +34,14 @@
         <button class="btn btn-roll">🎲 Roll dice</button>
         <button class="btn btn-hold">Hold</button>
     </section>
+    <svg>
+        <filter id="water-turbulence" x="0" y="0" width="100%" height="100%">
+            <feTurbulence id="water-filter" numOctaves="3" seed="1" baseFrequency="0.02 0.05"></feTurbulence>
+            <feDisplacementMap scale="25" in="SourceGraphic"></feDisplacementMap>
+            <animate xlink:href="#water-filter" attributeName="baseFrequency" 
+            dur="60s" keyTimes="0;0.5;1" values="0.02 0.06;0.04 0.08; 0.02 0.06" repeatCount="indefinite"></animate>
+        </filter>
+    </svg>
 </div>
     <script src="script.js"></script>
 </body>

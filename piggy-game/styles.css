@@ -16,7 +16,25 @@ body {
   background-image: url("./water-waves.jpg");
   /* background-repeat: repeat; */
   display: flex;
+  /* top: 0;
+  left: 0; */
   background-size: cover;
   align-items: center;
   justify-content: center;
+}
+
+body .water {
+  position: absolute;
+  background-image: url("./water-waves.jpg");
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  background-size: cover;
+  filter: url("#water-turbulence");
+}
+
+/* layout */
+
+section {
+  z-index: 999;
 }
