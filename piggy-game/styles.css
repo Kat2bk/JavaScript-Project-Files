@@ -38,3 +38,58 @@ body .water {
 section {
   z-index: 999;
 }
+
+.wrapper {
+  position: relative;
+  width: 100rem;
+  height: 70rem;
+  background: url("https://cdn.pixabay.com/photo/2017/02/07/09/02/wood-2045380__480.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  animation: rocking;
+  animation-timing-function: ease-in;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes rocking {
+  0% {
+    transform: rotateY(15deg);
+  }
+  10% {
+    transform: rotateY(10deg);
+    perspective: 300px;
+  }
+  25% {
+    transform: rotateY(25deg);
+    perspective: 300px;
+  }
+  35% {
+    transform: rotateY(15deg);
+    perspective: 300px;
+  }
+  50% {
+    transform: rotateY(-5deg);
+    perspective: 300px;
+  }
+  65% {
+    transform: rotateY(-15deg);
+    perspective: 300px;
+  }
+  70% {
+    transform: rotateY(-20deg);
+    perspective: 300px;
+  }
+  85% {
+    transform: rotateY(-15deg);
+    perspective: 300px;
+  }
+  90% {
+    transform: rotateY(-5deg);
+    perspective: 300px;
+  }
+  100% {
+    transform: rotateY(15deg);
+    perspective: 300px;
+  }
+}
