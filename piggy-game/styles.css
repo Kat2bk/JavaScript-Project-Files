@@ -43,53 +43,88 @@ section {
   position: relative;
   width: 100rem;
   height: 70rem;
-  background: url("https://cdn.pixabay.com/photo/2017/02/07/09/02/wood-2045380__480.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: rgb(88, 65, 40);
   animation: rocking;
   animation-timing-function: ease-in;
   animation-duration: 5s;
   animation-iteration-count: infinite;
 }
 
+.wrapper::before {
+  content: "";
+  background: url("https://cdn.pixabay.com/photo/2017/02/07/09/02/wood-2045380__480.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  height: 100%;
+  position: absolute;
+  z-index: -1;
+  width: calc(100% + 4px);
+  left: -2px;
+}
+
+body::before {
+  content: "";
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(37, 111, 136);
+  opacity: 0.3;
+  position: absolute;
+}
+
 @keyframes rocking {
   0% {
     transform: rotateY(15deg);
+    perspective: 300px;
+    box-shadow: 1px 7px 18px 5px rgba(0, 0, 0, 0.46);
   }
   10% {
     transform: rotateY(10deg);
     perspective: 300px;
+    box-shadow: 1px 7px 18px 5px rgba(0, 0, 0, 0.46);
   }
   25% {
     transform: rotateY(25deg);
     perspective: 300px;
+    box-shadow: 1px 7px 18px 5px rgba(0, 0, 0, 0.46);
   }
   35% {
     transform: rotateY(15deg);
     perspective: 300px;
+    box-shadow: 1px 7px 18px 5px rgba(0, 0, 0, 0.46);
   }
   50% {
     transform: rotateY(-5deg);
     perspective: 300px;
+    box-shadow: 1px 7px 18px 5px rgba(0, 0, 0, 0.46);
   }
   65% {
     transform: rotateY(-15deg);
     perspective: 300px;
+    box-shadow: 1px 7px 18px 5px rgba(0, 0, 0, 0.46);
   }
   70% {
     transform: rotateY(-20deg);
     perspective: 300px;
+    box-shadow: 1px 7px 18px 5px rgba(0, 0, 0, 0.46);
   }
   85% {
     transform: rotateY(-15deg);
     perspective: 300px;
+    box-shadow: 1px 7px 18px 5px rgba(0, 0, 0, 0.46);
   }
   90% {
     transform: rotateY(-5deg);
     perspective: 300px;
+    box-shadow: 1px 7px 18px 5px rgba(0, 0, 0, 0.46);
   }
   100% {
     transform: rotateY(15deg);
     perspective: 300px;
+    box-shadow: 1px 7px 18px 5px rgba(0, 0, 0, 0.46);
   }
 }
