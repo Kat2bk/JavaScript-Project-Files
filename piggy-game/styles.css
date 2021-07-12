@@ -297,3 +297,12 @@ section {
 /* input[type="text"] {
   color: lightcoral;
 } */
+
+.player-winner {
+  background-color: black;
+}
+
+.player-winner .name {
+  font-weight: 700;
+  color: white;
+}

@@ -9,3 +9,8 @@
 // if not, switch player
 // if user resets game, reset all score to 0
 // set user 1 as starting
+
+// score elements
+const scoreOne = document.querySelector('#score0');
+const scoreTwo = document.querySelector('#score1');
+
