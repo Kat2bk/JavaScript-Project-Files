@@ -306,3 +306,9 @@ section {
   font-weight: 700;
   color: white;
 }
+
+/* hidden class for dice */
+
+.hidden {
+  display: none;
+}
