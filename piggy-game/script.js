@@ -73,10 +73,10 @@ const btnHold = document.querySelector('.btn-hold');
 //         }  
 //     }
 
-    async function computerRolling() {
+    function computerRolling() {
         const count = [1, 2, 3];
-        setTimeout(() => {
-          for (let i = 0; i < count.length; i++) {
+       setTimeout(() => {
+       for (let i = 0; i < count.length; i++) {
               setTimeout(() => {
                   diceRolling();
                 const diceRoll =  Math.trunc(Math.random() * 6) + 1;
@@ -86,20 +86,22 @@ const btnHold = document.querySelector('.btn-hold');
                 currentScore += diceRoll;
                 document.getElementById(`current${activePlayer}`).textContent = currentScore;
                 if (i == count.length - 1) {
+                    // clearTimeout();
                     btnRoll.disabled = false;
                     btnRoll.classList.remove('disabledBtn');
                     activePlayer = activePlayer === 1 ? 0 : 1;
                     playerTwo.classList.toggle('player-active');
                     playerOne.classList.toggle('player-active');
                 }
-            } else if (diceRoll === 1) {
-                document.getElementById(`current${activePlayer}`).textContent = '☠️';
+            } else if (diceRoll == 1) {
+                clearTimeout();
                 currentScore = 0;
-                btnRoll.disabled = false;
-                btnRoll.classList.remove('disabledBtn');
+                document.getElementById(`current${activePlayer}`).textContent = '☠️';
                 activePlayer = activePlayer === 1 ? 0 : 1;
                 playerTwo.classList.toggle('player-active');
                 playerOne.classList.toggle('player-active');
+                btnRoll.disabled = false;
+                btnRoll.classList.remove('disabledBtn');
             }
               }, 1000 * i)
           }     
