@@ -26,37 +26,70 @@ const scoreOne = document.querySelector('#score0');
 const scoreTwo = document.querySelector('#score1');
 const currentOne = document.querySelector('#current0');
 const currentTwo = document.querySelector('#current1');
-let currentScore = 0;
+let currentScorePlayTwo = 0;
+let currentScorePlayOne = 0;
 // storing player scores in array
 const scores = [0, 0];
 
 // dice - hidden - starting condition
 const diceElement = document.querySelector('.dice');
 diceElement.classList.add('hidden');
+// playerOne.classList.add('player-active');
 
 // button elements
 const btnNew = document.querySelector('.btn-new');
 const btnRoll = document.querySelector('.btn-roll');
 const btnHold = document.querySelector('.btn-hold');
+// btnRoll.disabled = false;
 
+// for computer control rolling dice
+  function computerRolling() {
+        const count = [1, 2, 3];
+    let exitfun = false;
+   
+    setTimeout(async () => {
+        for (let i = 0; i < count.length; i++) {
+            diceRolling();
+            const diceRoll =  Math.trunc(Math.random() * 6) + 1;
+            diceElement.src = `./dice/dice-${diceRoll}.png` 
+            console.log('dice roll player two', diceRoll)
+            if (diceRoll !== 1) {
+                currentScorePlayTwo += diceRoll;
+                document.getElementById(`current${activePlayer}`).textContent = currentScorePlayTwo;
+            
+            } else if (diceRoll === 1) {
+                currentScorePlayTwo = 0;
+                document.getElementById(`current${activePlayer}`).textContent = '☠️';
+                break;
+            }
+            await new Promise(r => setTimeout(r, 1000));
+        }
 
-// rolling dice event 1 - 6
-btnRoll.addEventListener('click', () => {
-// generating random dice
-const dice = Math.trunc(Math.random() * 6) + 1;
-// display dice
-diceRolling();
-diceElement.classList.remove('hidden')
-diceElement.src = `./dice/dice-${dice}.png`
-// check for a one, if true, switch to next player
-if (dice !== 1) {
-    // add to current score
-    currentScore += dice;
-    currentOne.textContent = currentScore; // change later for active player
-} else {
-
+        activePlayer = activePlayer === 1 ? 0 : 1;
+        playerTwo.classList.toggle('player-active');
+        playerOne.classList.toggle('player-active');
+        btnRoll.disabled = false;
+        btnRoll.classList.remove('disabledBtn');
+    }, 1000)
 }
+
+btnRoll.addEventListener('click', () => {
+        const dice = Math.trunc(Math.random() * 6) + 1;
+        diceRolling();
+        diceElement.classList.remove('hidden')
+        diceElement.src = `./dice/dice-${dice}.png` 
+        if (dice !== 1) {
+            console.log('player one dice roll', dice);
+            currentScorePlayOne += dice;
+             document.getElementById(`current${activePlayer}`).textContent = currentScorePlayOne;
+        } else if (dice === 1) {
+            currentScorePlayOne = 0;
+             document.getElementById(`current${activePlayer}`).textContent ='☠️';
+             activePlayer = activePlayer === 0 ? 1 : 0;
+            playerOne.classList.toggle('player-active');
+            playerTwo.classList.toggle('player-active');
+            btnRoll.classList.add('disabledBtn');
+            btnRoll.disabled = true;
+            computerRolling();
+      }
 })
-
-// computer rolling 1 - 6
-
