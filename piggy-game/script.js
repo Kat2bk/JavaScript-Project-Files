@@ -33,7 +33,7 @@ const scores = [0, 0];
 
 // dice - hidden - starting condition
 const diceElement = document.querySelector('.dice');
-diceElement.classList.add('hidden');
+// diceElement.classList.add('hidden');
 // playerOne.classList.add('player-active');
 
 // button elements
@@ -45,14 +45,15 @@ const btnHold = document.querySelector('.btn-hold');
 // for computer control rolling dice
   function computerRolling() {
         const count = [1, 2, 3];
-    let exitfun = false;
-   
+
     setTimeout(async () => {
         for (let i = 0; i < count.length; i++) {
             diceRolling();
             const diceRoll =  Math.trunc(Math.random() * 6) + 1;
-            diceElement.src = `./dice/dice-${diceRoll}.png` 
-            console.log('dice roll player two', diceRoll)
+            // diceElement.src = `./dice/dice-${diceRoll}.png` 
+            // console.log('dice roll player two', diceRoll)
+            diceElement.dataset.side = diceRoll;
+            diceElement.classList.toggle('reRoll');
             if (diceRoll !== 1) {
                 currentScorePlayTwo += diceRoll;
                 document.getElementById(`current${activePlayer}`).textContent = currentScorePlayTwo;
@@ -62,7 +63,7 @@ const btnHold = document.querySelector('.btn-hold');
                 document.getElementById(`current${activePlayer}`).textContent = '☠️';
                 break;
             }
-            await new Promise(r => setTimeout(r, 1000));
+            await new Promise(resolve => setTimeout(resolve, 1300));
         }
 
         activePlayer = activePlayer === 1 ? 0 : 1;
@@ -73,11 +74,17 @@ const btnHold = document.querySelector('.btn-hold');
     }, 1000)
 }
 
+// button click to roll dice for user player
 btnRoll.addEventListener('click', () => {
+    // if (playerOne.className.includes('player-active')) {
+    //     playerOne.appendChild(diceElement);
+    // }
         const dice = Math.trunc(Math.random() * 6) + 1;
         diceRolling();
         diceElement.classList.remove('hidden')
-        diceElement.src = `./dice/dice-${dice}.png` 
+        // diceElement.src = `./dice/dice-${dice}.png` 
+        diceElement.dataset.side = dice;
+        diceElement.classList.toggle('reRoll');
         if (dice !== 1) {
             console.log('player one dice roll', dice);
             currentScorePlayOne += dice;
