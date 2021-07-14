@@ -100,3 +100,23 @@ btnRoll.addEventListener('click', () => {
             computerRolling();
       }
 })
+
+// button Hold for user
+
+btnHold.addEventListener('click', () => {
+// add score to scores array for player one
+    scores[activePlayer] += currentScorePlayOne;
+    // 
+    document.getElementById(`score${activePlayer}`).textContent = scores[activePlayer];
+            currentScorePlayOne = 0;
+            document.getElementById(`current${activePlayer}`).textContent ='☠️';
+             activePlayer = activePlayer === 0 ? 1 : 0;
+            playerOne.classList.toggle('player-active');
+            playerTwo.classList.toggle('player-active');
+            btnRoll.classList.add('disabledBtn');
+            btnRoll.disabled = true;
+            computerRolling();
+// check if score is equal to winning score
+
+// switch to next player
+})
