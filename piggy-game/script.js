@@ -44,7 +44,7 @@ const btnHold = document.querySelector('.btn-hold');
 
 // for computer control rolling dice
   function computerRolling() {
-        const count = [1, 2, 3];
+        const count = [1, 2];
 
     setTimeout(async () => {
         for (let i = 0; i < count.length; i++) {
@@ -57,10 +57,12 @@ const btnHold = document.querySelector('.btn-hold');
             if (diceRoll !== 1) {
                 currentScorePlayTwo += diceRoll;
                 document.getElementById(`current${activePlayer}`).textContent = currentScorePlayTwo;
-            
+                scores[activePlayer] += currentScorePlayTwo;
+                document.getElementById(`score${activePlayer}`).textContent = scores[activePlayer];
             } else if (diceRoll === 1) {
                 currentScorePlayTwo = 0;
                 document.getElementById(`current${activePlayer}`).textContent = '☠️';
+                // scores[activePlayer] = 0;
                 break;
             }
             await new Promise(resolve => setTimeout(resolve, 1300));
@@ -106,7 +108,7 @@ btnRoll.addEventListener('click', () => {
 btnHold.addEventListener('click', () => {
 // add score to scores array for player one
     scores[activePlayer] += currentScorePlayOne;
-    // 
+    // store score from array inside score for player
     document.getElementById(`score${activePlayer}`).textContent = scores[activePlayer];
             currentScorePlayOne = 0;
             document.getElementById(`current${activePlayer}`).textContent ='☠️';
