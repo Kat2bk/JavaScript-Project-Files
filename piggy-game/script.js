@@ -29,7 +29,6 @@ const currentTwo = document.querySelector('#current1');
 let currentScorePlayTwo = 0;
 let currentScorePlayOne = 0;
 // storing player scores in array
-const scores = [0, 0];
 
 // dice - hidden - starting condition
 const diceElement = document.querySelector('.dice');
@@ -42,9 +41,12 @@ const btnRoll = document.querySelector('.btn-roll');
 const btnHold = document.querySelector('.btn-hold');
 // btnRoll.disabled = false;
 
+
 // for computer control rolling dice
   function computerRolling() {
         const count = [1, 2];
+        const inputScore = document.getElementById('inputNumber').value;
+        const winningScore = 100;
 
     setTimeout(async () => {
         for (let i = 0; i < count.length; i++) {
@@ -59,20 +61,32 @@ const btnHold = document.querySelector('.btn-hold');
                 document.getElementById(`current${activePlayer}`).textContent = currentScorePlayTwo;
                 scores[activePlayer] += currentScorePlayTwo;
                 document.getElementById(`score${activePlayer}`).textContent = scores[activePlayer];
+                    
             } else if (diceRoll === 1) {
                 currentScorePlayTwo = 0;
                 document.getElementById(`current${activePlayer}`).textContent = '☠️';
-                // scores[activePlayer] = 0;
                 break;
             }
             await new Promise(resolve => setTimeout(resolve, 1300));
         }
 
-        activePlayer = activePlayer === 1 ? 0 : 1;
-        playerTwo.classList.toggle('player-active');
-        playerOne.classList.toggle('player-active');
-        btnRoll.disabled = false;
-        btnRoll.classList.remove('disabledBtn');
+        if (scores[activePlayer] > Number(inputScore)) {
+            playerTwo.style.backgroundColor = "rgb(255,215,0, 0.2)";
+            document.getElementById(`name${activePlayer}`).textContent = "Winner!"
+            btnRoll.classList.add('disabledBtn');
+            btnRoll.disabled = true;
+        } else if (scores[activePlayer] === winningScore) {
+            document.getElementById(`name${activePlayer}`).textContent = "Winner!"
+            btnRoll.classList.add('disabledBtn');
+            btnRoll.disabled = true;
+        } else {
+            activePlayer = activePlayer === 1 ? 0 : 1;
+            playerTwo.classList.toggle('player-active');
+            playerOne.classList.toggle('player-active');
+            btnRoll.disabled = false;
+            btnRoll.classList.remove('disabledBtn');
+        }
+
     }, 1000)
 }
 
@@ -88,7 +102,6 @@ btnRoll.addEventListener('click', () => {
         diceElement.dataset.side = dice;
         diceElement.classList.toggle('reRoll');
         if (dice !== 1) {
-            console.log('player one dice roll', dice);
             currentScorePlayOne += dice;
              document.getElementById(`current${activePlayer}`).textContent = currentScorePlayOne;
         } else if (dice === 1) {
@@ -103,22 +116,31 @@ btnRoll.addEventListener('click', () => {
       }
 })
 
-// button Hold for user
+const scores = [0, 0];
 
-btnHold.addEventListener('click', () => {
+// button Hold for user
+btnHold.addEventListener('click', (e) => {
+    let winningScore = 100;
+    const inputScore = document.getElementById('inputNumber').value;
+
 // add score to scores array for player one
     scores[activePlayer] += currentScorePlayOne;
     // store score from array inside score for player
+    
     document.getElementById(`score${activePlayer}`).textContent = scores[activePlayer];
-            currentScorePlayOne = 0;
-            document.getElementById(`current${activePlayer}`).textContent ='☠️';
-             activePlayer = activePlayer === 0 ? 1 : 0;
-            playerOne.classList.toggle('player-active');
-            playerTwo.classList.toggle('player-active');
-            btnRoll.classList.add('disabledBtn');
-            btnRoll.disabled = true;
-            computerRolling();
-// check if score is equal to winning score
-
-// switch to next player
+    if (scores[activePlayer] > Number(inputScore)) {
+            active.style.backgroundColor = "rgb(255,215,0, 0.2)";
+            document.getElementById(`name${activePlayer}`).textContent = "Winner!"
+    } else if (scores[activePlayer] === winningScore) {
+            document.getElementById(`name${activePlayer}`).textContent = "Winner!"
+    } else {
+        currentScorePlayOne = 0;
+        document.getElementById(`current${activePlayer}`).textContent ='☠️';
+         activePlayer = activePlayer === 0 ? 1 : 0;
+        playerOne.classList.toggle('player-active');
+        playerTwo.classList.toggle('player-active');
+        btnRoll.classList.add('disabledBtn');
+        btnRoll.disabled = true;
+        computerRolling();
+    }
 })
