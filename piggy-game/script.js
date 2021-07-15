@@ -5,6 +5,11 @@ function diceRolling() {
     audio.play();
 }
 
+function pirateMusic() {
+    let audio = new Audio('./sounds/Pirate%20Folk%20Music%20-%20The%20Captain%27s%20Parrot.mp3');
+    audio.play();
+}
+
 // user rolls dice, generate random roll
 // did user roll a one?
 // if no, add roll to score, display score
