@@ -452,6 +452,9 @@ section {
   top: 40%;
   left: 44%;
   cursor: pointer;
+}
+
+.vibrate {
   animation: vibrate 0.6s linear infinite both;
 }
 

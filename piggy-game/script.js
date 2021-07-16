@@ -5,11 +5,6 @@ function diceRolling() {
     audio.play();
 }
 
-function pirateMusic() {
-    let audio = new Audio('./sounds/Pirate%20Folk%20Music%20-%20The%20Captain%27s%20Parrot.mp3');
-    audio.play();
-}
-
 // user rolls dice, generate random roll
 // did user roll a one?
 // if no, add roll to score, display score
@@ -75,7 +70,7 @@ const btnHold = document.querySelector('.btn-hold');
             await new Promise(resolve => setTimeout(resolve, 1300));
         }
 
-        if (scores[activePlayer] > Number(inputScore)) {
+        if (scores[activePlayer] >= Number(inputScore)) {
             playerTwo.style.backgroundColor = "rgb(255,215,0, 0.2)";
             document.getElementById(`name${activePlayer}`).textContent = "Winner!"
             btnRoll.classList.add('disabledBtn');
@@ -133,7 +128,7 @@ btnHold.addEventListener('click', (e) => {
     // store score from array inside score for player
     
     document.getElementById(`score${activePlayer}`).textContent = scores[activePlayer];
-    if (scores[activePlayer] > Number(inputScore)) {
+    if (scores[activePlayer] >= Number(inputScore)) {
             active.style.backgroundColor = "rgb(255,215,0, 0.2)";
             document.getElementById(`name${activePlayer}`).textContent = "Winner!"
     } else if (scores[activePlayer] === winningScore) {
@@ -149,3 +144,27 @@ btnHold.addEventListener('click', (e) => {
         computerRolling();
     }
 })
+
+// functionality for play music button
+// window.addEventListener("DOMContentLoaded", () => {
+//     let audio = new Audio('./sounds/Pirate%20Folk%20Music%20-%20The%20Captain%27s%20Parrot.mp3');
+//     audio.volume = 0.2;
+//     playMusicBtn.classList.add('vibrate');
+//     audio.play();
+// })
+
+const audio = document.getElementById('myAudio');
+// music play/pause btn
+const playMusicBtn = document.querySelector('.playBtn');
+let time = 0;
+function playPause() {
+    if (time == 0) {
+        time = 1;
+        playMusicBtn.classList.add('vibrate');
+        audio.play();
+    } else {
+        time = 0;
+        playMusicBtn.classList.remove('vibrate');
+        audio.pause();
+    }
+}
