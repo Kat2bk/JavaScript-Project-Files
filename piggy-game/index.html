@@ -8,19 +8,18 @@
     <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <!-- <svg>
+    <svg>
         <filter id="water-turbulence" x="0" y="0" width="100%" height="100%">
             <feTurbulence id="water-filter" numOctaves="2" seed="3" baseFrequency="0.02 0.03"></feTurbulence>
             <feDisplacementMap scale="30" in="SourceGraphic"></feDisplacementMap>
             <animate xlink:href="#water-filter" attributeName="baseFrequency" 
             dur="5s" keyTimes="0;0.3;1" values="0.02 0.06;0.04 0.08; 0.02 0.06" repeatCount="indefinite"></animate>
         </filter>
-    </svg> -->
+    </svg>
     <div class="water"></div>
     <div class="wrapper">
     <section class="player-one player player-active">
-        //player-active
-        <h2 class="name" id="name0">Player 1</h2>
+        <h2 class="name" id="name0">Player</h2>
         <p class="score" id="score0">0</p>
         <div class="current">
             <p class="current-label">Current</p>
@@ -36,16 +35,53 @@
             <p class="current-score" id="current1">☠️</p>
         </div>
 
-        <input type="number" class="input-score" placeholder="Set Winning Score" />
+        <input type="text" class="input-score" placeholder="Set Winning Score" id="inputNumber" required/>
 
-        <img src="./dice/dice-1.png" alt="game-dice" class="dice" />
+        <!-- <img src="./dice/dice-1.png" alt="game-dice" class="dice" /> -->
+        <!-- dice creation -->
+        <div class="dice" data-set="1">
+            <div class="sides side-1">
+                <span class="dot dot-1"></span>
+            </div>
+            <div class="sides side-2">
+                <span class="dot dot-1"></span>
+                <span class="dot dot-2"></span>
+            </div>
+            <div class="sides side-3">
+                <span class="dot dot-1"></span>
+                <span class="dot dot-2"></span>
+                <span class="dot dot-3"></span>
+            </div>
+            <div class="sides side-4">
+                <span class="dot dot-1"></span>
+                <span class="dot dot-2"></span>
+                <span class="dot dot-3"></span>
+                <span class="dot dot-4"></span>
+            </div>
+            <div class="sides side-5">
+                <span class="dot dot-1"></span>
+                <span class="dot dot-2"></span>
+                <span class="dot dot-3"></span>
+                <span class="dot dot-4"></span>
+                <span class="dot dot-5"></span>
+            </div>
+            <div class="sides side-6">
+                <span class="dot dot-1"></span>
+                <span class="dot dot-2"></span>
+                <span class="dot dot-3"></span>
+                <span class="dot dot-4"></span>
+                <span class="dot dot-5"></span>
+                <span class="dot dot-6"></span>
+            </div>
+        </div>
+
         <button class="btn btn-new">New game</button>
         <button class="btn btn-roll">🎲 Roll dice</button>
         <button class="btn btn-hold">Hold</button>
     </section>
 </div>
-
-<!-- <audio autoplay id="audio-player" controls="controls" src="salamisound-4952334-water-lapping-on-the-boat.mp3" type="audio/mpeg"></audio> -->
+<img src="./PinClipart.com_wooden-cross-clip-art_4171100.png" alt="play/pause btn" class="playBtn vibrate" onclick="playPause()"/>
+<audio id="myAudio" preload="none" src="./Tavern.mp3" autoplay></audio>
     <script src="script.js"></script>
 </body>
 </html>
