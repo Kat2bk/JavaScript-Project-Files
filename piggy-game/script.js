@@ -51,9 +51,34 @@ const btnRoll = document.querySelector('.btn-roll');
 const btnHold = document.querySelector('.btn-hold');
 
 // is game playing variable
-let isPlaying = true;
-let activePlayer = 0;
-let scores = [0, 0];
+let isPlaying
+let activePlayer;
+let scores;
+
+const resetGame = () => {
+    isPlaying = true;
+    activePlayer = 0;
+    scores = [0, 0];
+    
+    diceElement.classList.add('hidden');
+    localStorage.clear();
+    currentScorePlayOne = 0;
+    currentScorePlayTwo = 0;
+    currentTwo.textContent = 0;
+    currentOne.textContent = 0;
+    scoreOne.textContent = 0;
+    scoreTwo.textContent = 0;
+    active.style.backgroundColor = "";
+    playerTwo.style.backgroundColor = "";
+    document.getElementById('name0').textContent = "Player";
+    document.getElementById('name1').textContent = "Pirate";
+    btnRoll.classList.remove('disabledBtn');
+    btnRoll.disabled = false;
+    playerOne.classList.add('active-player');
+    playerTwo.classList.remove('active-player');
+}
+
+resetGame();
 
 function initMessage() {
     const input = document.getElementById('inputNumber').value;
@@ -99,7 +124,6 @@ function initMessage() {
             diceElement.classList.add('hidden');
             playerTwo.style.backgroundColor = "rgb(255,215,0, 0.2)";
             document.getElementById(`name${activePlayer}`).textContent = "Winner!"
-            playerTwo.classList.remove('active-player');
         } else {
             activePlayer = activePlayer === 1 ? 0 : 1;
             playerTwo.classList.toggle('player-active');
@@ -194,20 +218,5 @@ function playPause() {
 
 // reset game
 btnNew.addEventListener('click', () => {
-    scores = [0, 0];
-    diceElement.classList.add('hidden');
-    localStorage.clear();
-    currentScorePlayOne = 0;
-    currentScorePlayTwo = 0;
-    isPlaying = true;
-    currentTwo.textContent = 0;
-    currentOne.textContent = 0;
-    scoreOne.textContent = 0;
-    scoreTwo.textContent = 0;
-    active.style.backgroundColor = "";
-    playerTwo.style.backgroundColor = "";
-    document.getElementById('name0').textContent = "Player";
-    document.getElementById('name1').textContent = "Pirate";
-    btnRoll.classList.remove('disabledBtn');
-    btnRoll.disabled = false;
+  resetGame();
 })
