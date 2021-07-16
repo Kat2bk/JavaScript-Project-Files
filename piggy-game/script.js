@@ -5,6 +5,18 @@ function diceRolling() {
     audio.play();
 }
 
+// pirate laugh
+function pirateLaughing() {
+    let audio = new Audio('./sounds/pirateLaugh.mp3');
+    audio.play();
+}
+
+// pirate arrgh
+function pirateGroan() {
+    let audio = new Audio('./sounds/pirateArrgh.m4a');
+    audio.play();
+}
+
 // user rolls dice, generate random roll
 // did user roll a one?
 // if no, add roll to score, display score
@@ -41,12 +53,13 @@ const btnRoll = document.querySelector('.btn-roll');
 const btnHold = document.querySelector('.btn-hold');
 // btnRoll.disabled = false;
 
+// const winningScore = 100;
+
 
 // for computer control rolling dice
   function computerRolling() {
         const count = [1, 2];
         const inputScore = document.getElementById('inputNumber').value;
-        const winningScore = 100;
 
     setTimeout(async () => {
         for (let i = 0; i < count.length; i++) {
@@ -70,12 +83,9 @@ const btnHold = document.querySelector('.btn-hold');
             await new Promise(resolve => setTimeout(resolve, 1300));
         }
 
-        if (scores[activePlayer] >= Number(inputScore)) {
+        if (Number(inputScore) && scores[activePlayer] >= Number(inputScore)) {
+            pirateLaughing();
             playerTwo.style.backgroundColor = "rgb(255,215,0, 0.2)";
-            document.getElementById(`name${activePlayer}`).textContent = "Winner!"
-            btnRoll.classList.add('disabledBtn');
-            btnRoll.disabled = true;
-        } else if (scores[activePlayer] === winningScore) {
             document.getElementById(`name${activePlayer}`).textContent = "Winner!"
             btnRoll.classList.add('disabledBtn');
             btnRoll.disabled = true;
@@ -120,7 +130,6 @@ const scores = [0, 0];
 
 // button Hold for user
 btnHold.addEventListener('click', (e) => {
-    let winningScore = 100;
     const inputScore = document.getElementById('inputNumber').value;
 
 // add score to scores array for player one
@@ -128,10 +137,12 @@ btnHold.addEventListener('click', (e) => {
     // store score from array inside score for player
     
     document.getElementById(`score${activePlayer}`).textContent = scores[activePlayer];
-    if (scores[activePlayer] >= Number(inputScore)) {
+    if (Number(inputScore) && scores[activePlayer] >= Number(inputScore)) {
+            pirateGroan();
             active.style.backgroundColor = "rgb(255,215,0, 0.2)";
             document.getElementById(`name${activePlayer}`).textContent = "Winner!"
-    } else if (scores[activePlayer] === winningScore) {
+    } else if (scores[activePlayer] == winningScore) {
+            pirateGroan();
             document.getElementById(`name${activePlayer}`).textContent = "Winner!"
     } else {
         currentScorePlayOne = 0;
