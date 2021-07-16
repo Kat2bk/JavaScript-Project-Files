@@ -160,11 +160,11 @@ let time = 0;
 function playPause() {
     if (time == 0) {
         time = 1;
-        playMusicBtn.classList.add('vibrate');
-        audio.play();
-    } else {
-        time = 0;
         playMusicBtn.classList.remove('vibrate');
         audio.pause();
+    } else {
+        time = 0;
+        playMusicBtn.classList.add('vibrate');
+        audio.play();
     }
 }
