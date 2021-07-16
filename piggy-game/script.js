@@ -105,6 +105,9 @@ btnRoll.addEventListener('click', () => {
     // if (playerOne.className.includes('player-active')) {
     //     playerOne.appendChild(diceElement);
     // }
+
+        inputScoreAlert();
+
         const dice = Math.trunc(Math.random() * 6) + 1;
         diceRolling();
         diceElement.classList.remove('hidden')
@@ -128,10 +131,19 @@ btnRoll.addEventListener('click', () => {
 
 const scores = [0, 0];
 
+function inputScoreAlert() {
+    const input = document.querySelector('.input-score').value;
+
+    if (!input) {
+        alert('Give meh yer wager, laddy!')
+    }
+}
+
 // button Hold for user
 btnHold.addEventListener('click', (e) => {
     const inputScore = document.getElementById('inputNumber').value;
 
+    inputScoreAlert();
 // add score to scores array for player one
     scores[activePlayer] += currentScorePlayOne;
     // store score from array inside score for player
