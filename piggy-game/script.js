@@ -217,6 +217,4 @@ function playPause() {
 }
 
 // reset game
-btnNew.addEventListener('click', () => {
-  resetGame();
-})
+btnNew.addEventListener('click', resetGame);
