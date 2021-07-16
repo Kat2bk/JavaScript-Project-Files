@@ -31,7 +31,6 @@ function pirateGroan() {
 const playerOne = document.querySelector('.player-one');
 const playerTwo = document.querySelector('.player-two');
 const active = document.querySelector('.player-active');
-let activePlayer = 0;
 
 // score elements
 const scoreOne = document.querySelector('#score0');
@@ -44,17 +43,30 @@ let currentScorePlayOne = 0;
 
 // dice - hidden - starting condition
 const diceElement = document.querySelector('.dice');
-// diceElement.classList.add('hidden');
 // playerOne.classList.add('player-active');
 
 // button elements
 const btnNew = document.querySelector('.btn-new');
 const btnRoll = document.querySelector('.btn-roll');
 const btnHold = document.querySelector('.btn-hold');
-// btnRoll.disabled = false;
 
-// const winningScore = 100;
+// is game playing variable
+let isPlaying = true;
+let activePlayer = 0;
+let scores = [0, 0];
 
+function initMessage() {
+    const input = document.getElementById('inputNumber').value;
+    if (!input) {
+        alert('Give meh yer wager, laddy!')
+    } else if (input) {
+        let alerted = localStorage.getItem('alerted') || '';
+            if (alerted !== 'yes' && isPlaying) {
+                alert("Aye, looser walks the plank!");
+                localStorage.setItem('alerted','yes');
+            }
+    }
+}
 
 // for computer control rolling dice
   function computerRolling() {
@@ -65,8 +77,6 @@ const btnHold = document.querySelector('.btn-hold');
         for (let i = 0; i < count.length; i++) {
             diceRolling();
             const diceRoll =  Math.trunc(Math.random() * 6) + 1;
-            // diceElement.src = `./dice/dice-${diceRoll}.png` 
-            // console.log('dice roll player two', diceRoll)
             diceElement.dataset.side = diceRoll;
             diceElement.classList.toggle('reRoll');
             if (diceRoll !== 1) {
@@ -85,10 +95,11 @@ const btnHold = document.querySelector('.btn-hold');
 
         if (Number(inputScore) && scores[activePlayer] >= Number(inputScore)) {
             pirateLaughing();
+            isPlaying = false;
+            diceElement.classList.add('hidden');
             playerTwo.style.backgroundColor = "rgb(255,215,0, 0.2)";
             document.getElementById(`name${activePlayer}`).textContent = "Winner!"
-            btnRoll.classList.add('disabledBtn');
-            btnRoll.disabled = true;
+            playerTwo.classList.remove('active-player');
         } else {
             activePlayer = activePlayer === 1 ? 0 : 1;
             playerTwo.classList.toggle('player-active');
@@ -106,57 +117,45 @@ btnRoll.addEventListener('click', () => {
     //     playerOne.appendChild(diceElement);
     // }
 
-        inputScoreAlert();
-
+    if (isPlaying) {
         const dice = Math.trunc(Math.random() * 6) + 1;
         diceRolling();
-        diceElement.classList.remove('hidden')
-        // diceElement.src = `./dice/dice-${dice}.png` 
-        diceElement.dataset.side = dice;
-        diceElement.classList.toggle('reRoll');
-        if (dice !== 1) {
-            currentScorePlayOne += dice;
-             document.getElementById(`current${activePlayer}`).textContent = currentScorePlayOne;
-        } else if (dice === 1) {
-            currentScorePlayOne = 0;
-             document.getElementById(`current${activePlayer}`).textContent ='☠️';
-             activePlayer = activePlayer === 0 ? 1 : 0;
-            playerOne.classList.toggle('player-active');
-            playerTwo.classList.toggle('player-active');
-            btnRoll.classList.add('disabledBtn');
-            btnRoll.disabled = true;
-            computerRolling();
+            diceElement.classList.remove('hidden') 
+            diceElement.dataset.side = dice;
+            diceElement.classList.toggle('reRoll');
+            if (dice !== 1) {
+                currentScorePlayOne += dice;
+                document.getElementById(`current${activePlayer}`).textContent = currentScorePlayOne;
+             } else if (dice === 1) {
+                currentScorePlayOne = 0;
+                document.getElementById(`current${activePlayer}`).textContent ='☠️';
+                activePlayer = activePlayer === 0 ? 1 : 0;
+                playerOne.classList.toggle('player-active');
+                playerTwo.classList.toggle('player-active');
+                btnRoll.classList.add('disabledBtn');
+                btnRoll.disabled = true;
+                computerRolling();
       }
-})
-
-const scores = [0, 0];
-
-function inputScoreAlert() {
-    const input = document.querySelector('.input-score').value;
-
-    if (!input) {
-        alert('Give meh yer wager, laddy!')
     }
-}
-
+})
+console.log('player one', playerOne);
+console.log('player two', playerTwo);
 // button Hold for user
 btnHold.addEventListener('click', (e) => {
-    const inputScore = document.getElementById('inputNumber').value;
-
-    inputScoreAlert();
-// add score to scores array for player one
+    if (isPlaying) {
+        initMessage();
+        const inputScore = document.getElementById('inputNumber').value;
+    // add score to scores array for player one
     scores[activePlayer] += currentScorePlayOne;
-    // store score from array inside score for player
-    
+    // store score from array inside score for player  
     document.getElementById(`score${activePlayer}`).textContent = scores[activePlayer];
-    if (Number(inputScore) && scores[activePlayer] >= Number(inputScore)) {
+        if (Number(inputScore) && scores[activePlayer] >= Number(inputScore)) {
+            isPlaying = false;
             pirateGroan();
+            diceElement.classList.add('hidden');
             active.style.backgroundColor = "rgb(255,215,0, 0.2)";
             document.getElementById(`name${activePlayer}`).textContent = "Winner!"
-    } else if (scores[activePlayer] == winningScore) {
-            pirateGroan();
-            document.getElementById(`name${activePlayer}`).textContent = "Winner!"
-    } else {
+        } else {
         currentScorePlayOne = 0;
         document.getElementById(`current${activePlayer}`).textContent ='☠️';
          activePlayer = activePlayer === 0 ? 1 : 0;
@@ -165,6 +164,7 @@ btnHold.addEventListener('click', (e) => {
         btnRoll.classList.add('disabledBtn');
         btnRoll.disabled = true;
         computerRolling();
+        }
     }
 })
 
@@ -191,3 +191,23 @@ function playPause() {
         audio.play();
     }
 }
+
+// reset game
+btnNew.addEventListener('click', () => {
+    scores = [0, 0];
+    diceElement.classList.add('hidden');
+    localStorage.clear();
+    currentScorePlayOne = 0;
+    currentScorePlayTwo = 0;
+    isPlaying = true;
+    currentTwo.textContent = 0;
+    currentOne.textContent = 0;
+    scoreOne.textContent = 0;
+    scoreTwo.textContent = 0;
+    active.style.backgroundColor = "";
+    playerTwo.style.backgroundColor = "";
+    document.getElementById('name0').textContent = "Player";
+    document.getElementById('name1').textContent = "Pirate";
+    btnRoll.classList.remove('disabledBtn');
+    btnRoll.disabled = false;
+})
